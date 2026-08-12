@@ -1,0 +1,523 @@
+/* =========================================
+   OMANDI ISAIAH MOGENI
+   Projects Page
+   projects.css
+   ========================================= */
+
+
+/* =========================================
+   RESET
+   ========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background: #05070a;
+
+  color: #ffffff;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   GENERAL
+   ========================================= */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.site-header {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 1000;
+
+  background: rgba(5, 7, 10, 0.88);
+
+  backdrop-filter: blur(14px);
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+}
+
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+.navbar {
+  width: 90%;
+  max-width: 1200px;
+
+  min-height: 75px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+
+/* =========================================
+   LOGO
+   ========================================= */
+
+.logo {
+  font-size: 1.6rem;
+
+  font-weight: 700;
+
+  letter-spacing: -1px;
+
+  white-space: nowrap;
+}
+
+.logo span {
+  color: #00ff88;
+}
+
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
+
+.nav-links {
+  display: flex;
+
+  align-items: center;
+
+  gap: 30px;
+}
+
+.nav-links a {
+  position: relative;
+
+  color: #b7b7b7;
+
+  font-size: 0.95rem;
+
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffffff;
+}
+
+
+/* Navigation underline */
+
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -7px;
+
+  width: 0;
+  height: 2px;
+
+  background: #00ff88;
+
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+
+/* =========================================
+   COMING SOON SECTION
+   ========================================= */
+
+.coming-soon {
+  min-height: 100vh;
+
+  padding:
+    150px 5% 80px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 255, 136, 0.08),
+      transparent 55%
+    );
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================
+   COMING SOON CONTENT
+   ========================================= */
+
+.coming-soon-content {
+  width: 100%;
+
+  max-width: 750px;
+
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   SECTION LABEL
+   ========================================= */
+
+.section-label {
+  margin-bottom: 12px;
+
+  color: #00ff88;
+
+  font-size: 0.85rem;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================
+   COMING SOON ICON
+   ========================================= */
+
+.coming-soon-icon {
+  margin-bottom: 20px;
+
+  font-size: 4rem;
+
+  line-height: 1;
+}
+
+
+/* =========================================
+   PAGE TITLE
+   ========================================= */
+
+.coming-soon h1 {
+  max-width: 900px;
+
+  margin:
+    0 auto 20px;
+
+  font-size:
+    clamp(2.8rem, 6vw, 5rem);
+
+  line-height: 1.05;
+
+  letter-spacing: -2px;
+}
+
+
+/* =========================================
+   COMING SOON DESCRIPTION
+   ========================================= */
+
+.coming-soon-text {
+  max-width: 650px;
+
+  margin:
+    0 auto 15px;
+
+  color: #999999;
+
+  font-size: 1.05rem;
+}
+
+
+/* =========================================
+   COMING SOON SUBTEXT
+   ========================================= */
+
+.coming-soon-subtext {
+  max-width: 600px;
+
+  margin:
+    0 auto 30px;
+
+  color: #b7b7b7;
+
+  font-size: 1rem;
+}
+
+
+/* =========================================
+   COMING SOON BUTTON
+   ========================================= */
+
+.coming-soon-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+
+  padding: 12px 28px;
+
+  background: #00ff88;
+
+  color: #050505;
+
+  border:
+    1px solid
+    #00ff88;
+
+  border-radius: 6px;
+
+  font-size: 0.95rem;
+
+  font-weight: 700;
+
+  transition: 0.3s ease;
+}
+
+.coming-soon-btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 30px
+    rgba(0, 255, 136, 0.2);
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.site-footer {
+  padding: 30px 5%;
+
+  text-align: center;
+
+  background: #05070a;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+
+  color: #666666;
+
+  font-size: 0.85rem;
+}
+
+
+/* =========================================
+   TABLETS
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .nav-links {
+    gap: 20px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 750px) {
+
+  .navbar {
+    min-height: 70px;
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+  }
+
+
+  .coming-soon {
+    min-height: 100vh;
+
+    padding:
+      140px 6%
+      80px;
+  }
+
+
+  .coming-soon-icon {
+    font-size: 3.5rem;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 550px) {
+
+  .site-header {
+    position: absolute;
+  }
+
+
+  .navbar {
+    width: 94%;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 15px 0;
+  }
+
+
+  .nav-links {
+    width: 100%;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px 15px;
+  }
+
+
+  .nav-links a {
+    font-size: 0.78rem;
+  }
+
+
+  .coming-soon {
+    min-height: 100vh;
+
+    padding:
+      155px 6%
+      80px;
+  }
+
+
+  .coming-soon h1 {
+    font-size: 2.6rem;
+
+    letter-spacing: -1.5px;
+  }
+
+
+  .coming-soon-text {
+    font-size: 0.95rem;
+  }
+
+
+  .coming-soon-subtext {
+    font-size: 0.9rem;
+  }
+
+
+  .coming-soon-btn {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+   ========================================= */
+
+@media (max-width: 380px) {
+
+  .nav-links {
+    gap: 8px 11px;
+  }
+
+
+  .nav-links a {
+    font-size: 0.7rem;
+  }
+
+
+  .coming-soon {
+    padding:
+      145px 7%
+      70px;
+  }
+
+
+  .coming-soon-icon {
+    font-size: 3rem;
+  }
+
+
+  .coming-soon h1 {
+    font-size: 2.2rem;
+  }
+
+
+  .coming-soon-text {
+    font-size: 0.9rem;
+  }
+
+
+  .coming-soon-btn {
+    width: 100%;
+  }
+
+}
