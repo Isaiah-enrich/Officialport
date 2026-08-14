@@ -1,5 +1,5 @@
 /* =========================================
-   OMANDI ISAIAH MOGENI
+   ENRICH.DEV
    Portfolio JavaScript
    script.js
    ========================================= */
@@ -7,18 +7,18 @@
 
 /* =========================================
    MOBILE NAVIGATION
-   ========================================= */
+========================================= */
 
 const navbar = document.querySelector(".navbar");
 const navLinks = document.querySelector(".nav-links");
 
-
-// Create mobile menu button
 if (navbar && navLinks) {
 
   const menuButton = document.createElement("button");
 
   menuButton.className = "menu-button";
+
+  menuButton.type = "button";
 
   menuButton.setAttribute(
     "aria-label",
@@ -38,7 +38,9 @@ if (navbar && navLinks) {
   );
 
 
-  // Open / close menu
+  /* =====================================
+     OPEN / CLOSE MOBILE MENU
+  ===================================== */
 
   menuButton.addEventListener("click", () => {
 
@@ -49,7 +51,14 @@ if (navbar && navLinks) {
 
     menuButton.setAttribute(
       "aria-expanded",
+      isOpen.toString()
+    );
+
+    menuButton.setAttribute(
+      "aria-label",
       isOpen
+        ? "Close navigation menu"
+        : "Open navigation menu"
     );
 
     menuButton.innerHTML =
@@ -58,31 +67,40 @@ if (navbar && navLinks) {
   });
 
 
-  // Close menu after clicking a link
+  /* =====================================
+     CLOSE MENU AFTER LINK CLICK
+  ===================================== */
 
-  navLinks.querySelectorAll("a").forEach(link => {
+  navLinks
+    .querySelectorAll("a")
+    .forEach(link => {
 
-    link.addEventListener("click", () => {
+      link.addEventListener("click", () => {
 
-      navLinks.classList.remove("show");
+        navLinks.classList.remove("show");
 
-      menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-      );
+        menuButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
 
-      menuButton.innerHTML = "☰";
+        menuButton.setAttribute(
+          "aria-label",
+          "Open navigation menu"
+        );
+
+        menuButton.innerHTML = "☰";
+
+      });
 
     });
-
-  });
 
 }
 
 
 /* =========================================
    CURRENT YEAR
-   ========================================= */
+========================================= */
 
 const yearElements =
   document.querySelectorAll(".current-year");
@@ -96,104 +114,218 @@ yearElements.forEach(element => {
 
 
 /* =========================================
-   PROJECT CARD ANIMATION
-   ========================================= */
-
-const projectCards =
-  document.querySelectorAll(".project-card");
-
-
-const observer =
-  new IntersectionObserver(
-    (entries) => {
-
-      entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-          entry.target.classList.add(
-            "visible"
-          );
-
-          observer.unobserve(
-            entry.target
-          );
-
-        }
-
-      });
-
-    },
-    {
-      threshold: 0.15
-    }
-  );
-
-
-projectCards.forEach(card => {
-
-  observer.observe(card);
-
-});
-
-
-/* =========================================
-   SKILL CARD ANIMATION
-   ========================================= */
-
-const skillCards =
-  document.querySelectorAll(".skill-card");
-
-
-skillCards.forEach(card => {
-
-  observer.observe(card);
-
-});
-
-
-/* =========================================
    SCROLL HEADER EFFECT
-   ========================================= */
+========================================= */
 
 const header =
   document.querySelector(".site-header");
 
-
 if (header) {
+
+  const updateHeader = () => {
+
+    if (window.scrollY > 50) {
+
+      header.classList.add("scrolled");
+
+    } else {
+
+      header.classList.remove("scrolled");
+
+    }
+
+  };
+
 
   window.addEventListener(
     "scroll",
-    () => {
-
-      if (window.scrollY > 50) {
-
-        header.classList.add(
-          "scrolled"
-        );
-
-      } else {
-
-        header.classList.remove(
-          "scrolled"
-        );
-
-      }
-
-    }
+    updateHeader,
+    { passive: true }
   );
+
+
+  updateHeader();
 
 }
 
 
 /* =========================================
+   FADE-IN ANIMATIONS
+========================================= */
+
+const animatedElements =
+  document.querySelectorAll(
+    ".project-card, .skill-card, .approach-card, .contact-item"
+  );
+
+
+if ("IntersectionObserver" in window) {
+
+  const observer =
+    new IntersectionObserver(
+      (entries, observer) => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add(
+              "visible"
+            );
+
+            observer.unobserve(
+              entry.target
+            );
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.15
+      }
+    );
+
+
+  animatedElements.forEach(element => {
+
+    observer.observe(element);
+
+  });
+
+} else {
+
+  /* Fallback for older browsers */
+
+  animatedElements.forEach(element => {
+
+    element.classList.add("visible");
+
+  });
+
+}
+
+
+/* =========================================
+   EXTERNAL LINK HANDLING
+========================================= */
+
+const externalLinks =
+  document.querySelectorAll(
+    'a[href^="https://"]'
+  );
+
+externalLinks.forEach(link => {
+
+  const currentHost =
+    window.location.hostname;
+
+  try {
+
+    const linkUrl =
+      new URL(link.href);
+
+    if (
+      linkUrl.hostname !== currentHost
+    ) {
+
+      link.setAttribute(
+        "target",
+        "_blank"
+      );
+
+      link.setAttribute(
+        "rel",
+        "noopener noreferrer"
+      );
+
+    }
+
+  } catch (error) {
+
+    console.warn(
+      "Could not process external link:",
+      link.href
+    );
+
+  }
+
+});
+
+
+/* =========================================
+   CLIENT PROJECT PORTAL
+========================================= */
+
+const projectLinks =
+  document.querySelectorAll(
+    'a[href="https://enrichclient.vercel.app/"]'
+  );
+
+projectLinks.forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    console.log(
+      "Opening Enrich.DEV Client Project Portal."
+    );
+
+  });
+
+});
+
+
+/* =========================================
+   SMOOTH INTERNAL NAVIGATION
+========================================= */
+
+const internalLinks =
+  document.querySelectorAll(
+    'a[href^="#"]'
+  );
+
+internalLinks.forEach(link => {
+
+  link.addEventListener("click", event => {
+
+    const targetId =
+      link.getAttribute("href");
+
+    if (
+      !targetId ||
+      targetId === "#"
+    ) {
+      return;
+    }
+
+    const target =
+      document.querySelector(targetId);
+
+    if (target) {
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+  });
+
+});
+
+
+/* =========================================
    CONSOLE MESSAGE
-   ========================================= */
+========================================= */
 
 console.log(
-  "Portfolio loaded successfully."
+  "ENRICH.DEV loaded successfully."
 );
 
 console.log(
-  "Built by Omandi Isaiah Mogeni."
+  "Building digital solutions for Kenya and beyond."
 );
